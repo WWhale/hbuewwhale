@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link href="img/favicon.ico" rel="shortcut icon">
+		<title>0710京东注册</title>
+	</head>
+	<body>
+		<form action="0710京东登录.html">
+			<fieldset>
+				<legend>账户信息</legend>
+				<label><span style="color:red">*</span>用户名：</label>
+				<input type="text"/>
+				<br /><br />
+				<label><span style="color:red">*</span>密&nbsp;&nbsp;&nbsp;码：</label>
+				<input type="password" />
+				<br /><br />
+				性别：
+				<input type="radio" name="gender" />男
+				<input type="radio" name="gender" />女
+				<br /><br />
+			</fieldset>
+			<fieldset>
+				<legend>公司信息</legend>
+				<label>公司名称</label>
+				<input type="text" />
+				<br /><br />
+				
+				公司所在地址：
+				<select onchange="chinaChange(this,ducument.getElementById('city'));">
+					<option>---请选择---</option>
+					<option value="北京">北京</option>
+					<option value="河北">河北</option>
+					<option value="上海">上海</option>
+					<option value="山东">山东</option>
+					<option value="河南">河南</option>
+				</select>
+				<select name="city" id="city" onchange="cityChange(this, ducument.getElementById())">
+					<option>---请选择---</option>
+					  <optgroup label="北京">
+					    <option value ="朝阳区">朝阳区</option>
+					    <option value ="海淀区">海淀区</option>
+					  </optgroup>
+					  <optgroup label="河南">
+					    <option value ="郑州">郑州</option>
+					    <option value ="许昌">许昌</option>
+					  </optgroup>
+				</select>
+				<select>
+					<option>四拨子</option>
+					<option>中关村</option>
+					<option>上地</option>
+					<option>软件园</option>
+				</select>
+				<br /><br />
+				
+				购买用途:
+				<input type="checkbox" name="use" />IT
+				<input type="checkbox" name="use" />通讯设备
+				<input type="checkbox" name="use" />大家电
+				<input type="checkbox" name="use" />办公耗材
+				<br /><br />
+				
+				公司行业：
+				<select>
+					<option>IT行业</option>
+					<option>计算机软件</option>
+					<option>市场推广</option>
+					<option>广告</option>
+				</select>
+				<br /><br />
+				
+				公司介绍：
+				<textarea rows="3" cols="20"></textarea>
+				<br /><br />
+				
+				营业执照上传：
+				<input type="file" title="选取文件" />
+			</fieldset>
+			<button id="button">立即注册</button>
+		</form>
+	</body>
+</html>
+<style type="text/css">
+	#button{
+		color:white;
+		font-size: larger;
+		background-color:salmon;
+		border-radius: 5px;
+		border-style: none;
+		width: 300px;
+		height: 40px;
+	}
+</style>
