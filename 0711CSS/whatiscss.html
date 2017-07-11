@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>0711CSS</title>
+		<!--<link rel="stylesheet" href="css/bigred.css" type="text/css"/>-->
+		<!--<style type="text/css">
+			@import url("css/bigred.css");
+		</style>-->
+		<style>
+			/*这是一个标签选择器*/
+			div{
+				background-color: #f88 ;
+			}
+			
+			/*这是一个类选择器 类名为cla*/
+			/*类选择器的优先级是大于标签选择器的*/
+			.cla{
+				color: plum;
+				background-color: lightgrey;
+			}
+			
+			/*这是一个ID选择器 只能被使用一次*/
+			/*ID选择器的优先级大于类选择器*/
+			#id1{
+				color: brown;
+			}
+			/*子代选择器 这个选择器 只会作用于第一层级的后代 也就是儿子辈*/
+			/*子代选择 使用>大于号 连接父选择器与子选择器*/
+			div>p{
+				color: ghostwhite;
+			}
+			.ppp>span{
+				color: blueviolet;
+			}
+			/*如果子代或者后代 没有设置特殊的样式 那么会被父标签设置的样式所支配*/
+			
+			/*后代选择器 会作用于 父标签的所有后代*/
+			div p{
+				font-size: 30px;
+				color: white;
+			}
+			
+			/**{
+				color: blueviolet;
+			}*/
+			
+			a:hover{
+				color: blue;
+			}
+			
+			/*权值 可以帮助我们判断当多个选择器作用在同一个标签的时候 到底哪一个生效*/
+			/*
+			 * 内联样式 1000
+			 * ID选择器 100
+			 * 类选择器 10
+			 * 标签选择器 1
+			 */
+			
+		.classDemo{
+        		color: red;
+        	}
+        	
+        	#idDemo{
+        		color: green;
+        	}
+        	
+        	p{
+        		color: deepskyblue;
+        	}
+        	div, p{
+        		color: yellow;
+        	}
+        	
+        	div>ul div p>span{
+        		color: red;
+        	}
+        	
+        	ol div>span, form>input, a{
+        		color: green;
+        	}
+		</style>
+	</head>
+	<body>
+		<!--css: cascading style sheets  层叠样式表-->
+		<!--可以将html标签装饰成我们需要的样子（样式）-->
+		<p>我是一个红色的段落</p>
+		<div>
+			我是一个Div
+			<p class="ppp">海上明<span>月</span>共潮生</p>
+		</div>
+		<span class="cla">我是一个有样式的span</span>
+		<a id="id1" href="#">我是一个链接</a>
+		
+		<ol>
+			<li>i know nothing </li>
+			<li>you know nothing</li>
+			<li>i know you</li>
+		</ol>
+		<a href="#">一月又一月</a>
+		<p id="idDemo" class="classDemo" style="color: black;">
+			那么我到底是什么样色的呢？
+		</p>
+		
+		<div>请给我一首歌的时间</div>
+		<p>请给你一首歌的时间</p>
+		
+		<div>
+			<ul>
+				<li>
+					<div>
+						<p><span>我是红色</span></p>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<ol>
+			<li>
+				<div>
+					<span>我是绿色</span>
+				</div>
+			</li>
+		</ol>
+		
+		<form>
+			<input type="text" value="color"/>
+		</form>
+		<a href="#">绿色</a>
+		
+	</body>
+</html>
