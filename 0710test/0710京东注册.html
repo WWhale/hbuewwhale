@@ -27,7 +27,7 @@
 				<br /><br />
 				
 				公司所在地址：
-				<select onchange="chinaChange(this,ducument.getElementById('city'));">
+				<select>
 					<option>---请选择---</option>
 					<option value="北京">北京</option>
 					<option value="河北">河北</option>
@@ -35,13 +35,13 @@
 					<option value="山东">山东</option>
 					<option value="河南">河南</option>
 				</select>
-				<select name="city" id="city" onchange="cityChange(this, ducument.getElementById())">
+				<select>
 					<option>---请选择---</option>
 					  <optgroup label="北京">
 					    <option value ="朝阳区">朝阳区</option>
 					    <option value ="海淀区">海淀区</option>
 					  </optgroup>
-					  <optgroup label="河南">
+					  <optgroup label="河南" disabled="disabled">
 					    <option value ="郑州">郑州</option>
 					    <option value ="许昌">许昌</option>
 					  </optgroup>
@@ -62,7 +62,7 @@
 				<br /><br />
 				
 				公司行业：
-				<select>
+				<select multiple="multiple">
 					<option>IT行业</option>
 					<option>计算机软件</option>
 					<option>市场推广</option>
