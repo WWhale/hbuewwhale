@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>盒子模型</title>
+	</head>
+	<body style="background-color: lightpink;">
+		<!--
+			盒子模型 以一个标签的content padding border margin等属性 建立一个模型
+			该模型可以帮助我们更好的理解标签有标签 标签与内容之间的关系
+			
+			像span这种内联标签 是不可以设置上下边距的 也就是margin-top margin-bottom对其不起作用
+			它们的高度 由内容的高度 与padding-top padding-bottom和border决定
+			
+			在div这种块状元素中 给它的标签span一个padding-top属性 并不会将这个div撑起来
+			这是应为内联元素（内联块状元素）的层级比块状元素的层级高
+			在div这种块状元素中 在其content文字内容后 又写了一个divChild子标签 
+			这个divChild子标签任然会独自占据一行
+			
+			在span标签中 在其content文字内容后 又写了一个子标签span 这个内部的子标签span一个padding属性
+			子标签span会将外层的父标签span撑开
+			
+			background-color属性在background-img的下层
+			
+			margin属性 是透明的 看不见的 是在background-color下层的
+			但是background-color无法影响到margin属性 所以它是透明的
+			
+			两个div标签 
+			上方的div标签有一个属性margin-bottom:20px
+			下方的div标签有........一个属性margin-top:40px
+			那么两个div纵向的实际距离为40px 也就是两个margin属性 较大的值起作用
+		-->
+		<div style="background-color: lightblue; height: 100px; margin: 20;">
+			我是用来演示盒子模型的第一个div标签
+			<div style="background-color:lightyellow;margin: 20px;">
+				我是第一个的子div标签
+			</div>
+		</div>
+		
+		<div style="background-color: lightyellow;margin: 40px;height: 200px;">
+			我是第二个div标签
+			<span style="background-color: lightgrey;padding: 10px;">我是一个内联元素span</span>
+		</div>
+		
+		<span style="background-color: aquamarine; background-image: url(img/cat.jpg);padding:250px;background-repeat: no-repeat;">
+			我是span
+			<span style="padding: 200px;background-color: lightcyan;">我是spanChild</span>
+		</span>
+	</body>
+</html>
+
+
+
+
+
+
+
+

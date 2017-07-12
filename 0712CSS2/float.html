@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>浮动</title>
+		<style type="text/css">
+			div{
+				width: 100px;
+				height: 100px;
+				float:left;
+			}
+			p{
+				clear: both;
+			}
+		</style>
+	</head>
+	<!--
+		文档流
+		按照html文档中 从上到下的显示顺序显示标签 
+		脱离文档流
+		从正常的文档流中浮起来 也就不再符合从上到下的规则了
+		三个div标签 
+		通过float：left属性的设置 浮动起来 也就不是正常文档流那一部分的内容了 这一层叫浮动层
+		而p标签 并没有浮动起来 p标签没有设置float属性
+		所以p标签还是按照正常文档流的顺序 从上到下排列 
+		而这个排列 是在浮动层下进行的 所以会看到三个div标签将p标签挂住的现象。
+	-->
+	<body>
+		<div style="background-color: lightcoral;">red</div>
+		<div style="background-color: lightgreen;">green</div>
+		<div style="background-color: lightskyblue;">blue</div>
+		<p style="width: 100px;height: 100px;background-color: lightgoldenrodyellow;">我是一个段落</p>
+		
+		<div style="height: 60px;width: 800px;background-color: lightgray;"></div>
+		<div style="height: 300px;width: 480px; background-color: lightcoral;float: left;margin-top: 10px;"></div>
+		<div style="height: 300px;width: 300px; background-color: lightyellow;float: left;margin-left: 20px;margin-top: 10px;"></div>
+		<div style="height: 50px;width: 800px; background-color: lightblue;margin-top: 10px;clear: both;"></div>
+	</body>
+</html>
