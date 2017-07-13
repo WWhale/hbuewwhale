@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>定位</title>
+	</head>
+	<body>
+		<!--position属性设置为absolute这个div就被设置成了绝对定位 
+			可以通过top bottom left right设置该元素的位置
+			设置位置时 相对的是上一层含有绝对定位属性的父标签 
+			如果没有这种父标签 那么相对body
+			
+			相对定位relative 是将原本所在的位置的元素脱离文档流 挪到另一个位置 
+			但是 原来占据的位置 依然占着
+			
+			固定定位 通过设置position属性为fixed来设置固定定位不会跟着滚动条滚动
+		-->
+		
+		<!--绝对定位-->
+		<div style="background-color: lightgrey;width: 300px;height: 300px;
+			position: absolute;margin:100px;">
+			<div style="width: 200px;height: 200px;background-color: lightsalmon;
+				position: absolute;left:200px;top: 50px;">
+				this is absolute
+			</div>
+		</div>
+		<div style="background-color: aliceblue;height: 400px;"></div>
+		
+		<!--相对定位-->
+		<div style="position: relative;left: 300px;top:200px;
+			width: 500px;height: 100px;background-color: lightcyan;">
+		</div>
+		<div style="background: lemonchiffon;">现在真的好热</div>
+		
+		<!--固定定位-->
+		<div style="width:200px;height: 200px;background-color: lightpink;
+			position: fixed;right: 0px;bottom:0px;">
+		</div>
+		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+	</body>
+</html>
