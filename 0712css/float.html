@@ -12,7 +12,6 @@
 			div{
 				width: 200px;
 				height: 200px;
-				border: 1px solid;
 			}
 			p{
 				clear: both;
@@ -31,15 +30,23 @@
 		而这个排列 是在浮动层下进行的 所以会看到三个div标签将p标签挂住的现象。
 	-->
 	<body>
-		<div style="background-color: lightcoral;">red</div>
-		<div style="background-color: lightgreen;">green</div>
-		<div style="background-color: lightskyblue;">blue</div>
+		<div style="background-color: lightcoral;float: left;">red</div>
+		<div style="background-color: lightgreen;float: left;">green</div>
+		<div style="background-color: lightskyblue;float: left;">blue</div>
 		<p style="width: 100px;height: 100px;background-color: lightgoldenrodyellow;">我是一个段落</p>
 		
-		<div style="height: 60px;width: 800px;background-color: lightgray;"></div>
+		<!--<div style="height: 60px;width: 800px;background-color: lightgray;"></div>
 		<div style="height: 300px;width: 480px; background-color: lightcoral;float: left;margin-top: 10px;"></div>
 		<div style="height: 300px;width: 300px; background-color: lightyellow;float: left;margin-left: 20px;margin-top: 10px;"></div>
-		<div style="height: 50px;width: 800px; background-color: lightblue;margin-top: 10px;clear: both;float: left;"></div>
+		<div style="height: 50px;width: 800px; background-color: lightblue;margin-top: 10px;clear: both;float: left;"></div>-->
 		
+		<div style="width: 800px;height: 100px;background:lightgray;"></div>
+		<div style="width: 100px;height: 400px;background-color: aliceblue;float: left;"></div>
+		<div style="float: left;width: 600px;">
+			<div style="width: 600px;height: 200px;background-color: burlywood;float: left;"></div>
+			<div style="width: 600px;height: 200px;background-color: bisque;float: left;"></div>
+		</div>
+		<div style="width: 100px;height: 400px;background-color: aliceblue;float: left;"></div>
+		<div style="width: 800px;height: 100px;background:lightgray;clear: both;"></div>
 	</body>
 </html>
