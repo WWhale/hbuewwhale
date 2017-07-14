@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>js的变量</title>
+		<script type="text/javascript">
+			var n = 1;//n指向了数字1
+			var a = "一脸懵逼";
+			n = true;
+			//m是一个未定义的变量
+			//200是一个整型变量
+			//得到的result变量的值是NaN
+			var m;//输出undefined
+			result = m-200;
+			//当被用做数字时 null表示0
+			//当被用作boolean时 null表示false
+			var l = null;//没有指向任何内容
+			l = l + 30;
+			if(null)
+			{
+				window.alert("你好");
+			}else{
+				window.alert("你不好");
+			}
+			window.alert(l);
+			
+			var r = "300"-200;//100
+			//字符串"300"在与整型200做减法操作时 js会将字符串先化为整型
+			//字符串"sss"无法转换为有效的整型变量 也就无法做减法
+			 r = "sss" - 200; //NaN 表示非数值
+			 //字符串的拼接
+			 r="sss"+200;//sss200
+			 window.alert(r);
+		</script>
+	</head>
+	<body>
+	
+	</body>
+</html>

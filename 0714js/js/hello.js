@@ -1,0 +1,1 @@
+window.document.write("我的外部.js文件的内容");

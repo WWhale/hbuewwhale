@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			var result = window.confirm("您已退出");
+			if(result == false) exit();
+			function exit(){
+				window.alert("您已取消退出");
+			}
+			
+			var num = window.prompt("输入一个数字");
+			if(num % 2 == 0) console.log(num);
+			else console.log("不是偶数");
+			
+			num = window.prompt("输入一个数字");
+			if(num <= 70 && num >=20) window.alert(num);
+			else window.alert("不在该范围内");
+			
+			function num(){
+				return window.prompt("输入一个数字");
+			}
+			var n = num();
+			var r = Math.random()*100;			
+			if(n > r) document.write("赢了");
+			else document.write("输了");
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

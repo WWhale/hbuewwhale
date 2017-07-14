@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>js弹窗</title>
+		<script type="text/javascript">
+			//prompt函数 可以接收两个参数
+			//参数1 弹窗的标题
+			//参数2 输入框的默认值
+			var result = window.prompt("are you a single dog?","yes");
+			
+			//confirm 可以接受一个参数
+			//弹窗的标题
+			//会有一个boolean类型的返回值
+			//如果用户点击了确定 那么返回true
+			//如果点击了取消 或者按esc 那么返回false
+			var result = window.confirm("can you sing a song for me?");
+			
+			//将用户输入的信息 显示在控制台上
+			console.log(result);
+			
+			//在js中 想建立一个函数 不需要像Java中那样
+			//要把方法建立在类中
+			//js中 只要将函数建立在script标签中就可以了
+			//创建一个函数的标准格式
+			function name(){ 
+				window.alert("hello function");
+			}
+			name();
+			
+			//一个含参的函数
+			//参数也是不需要写类型的
+			function t1(p1, p2){
+				var r = p1 + p2;
+				window.alert(r);
+			}
+			t1(4,23);
+			
+			function t2(p1, p2){
+				return p1*p2;
+			}
+			window.alert(t2(4,t2(5,t2(6, t2(7, 8)))));
+
+			function t3(){
+				var d = "我是这个变量的值";
+				//这里是默认使用的window.alert()
+				alert(d);
+			}
+			t3();
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>
