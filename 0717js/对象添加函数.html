@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>对象-函数</title>
+		<script type="text/javascript">
+			var obj = new Object();
+			obj.name = "张三";
+			obj.age = 19;
+			
+			//给对象添加方法
+			function late(){
+				alert("hjqlate");
+			}
+			//late()表示调用这个函数 late表示这个函数
+			//将late函数赋值给了obj的dohat
+			obj.doWhat = late;
+			obj.doWhat();
+			
+			//通过匿名函数的赋值
+			//给obj对象添加一个函数
+			obj.sing = function(){
+				alert("sing");
+			}
+			obj.sing();
+			
+			//创建一个构造函数 一般是首字母大写 但是不大写也不会错
+			//给this这个对象添加了一个goHome
+			//弱类型语言 是不需要给addr指定类型的
+			//在这个函数中我们将addr视为字符串 无论传过来的是什么类型 都视为字符串
+			function Student(){
+				//this就是使用Student的构造函数构造出来的这个对象
+				this.name ="杨戬";
+				this.school = "蓝鸥科技";
+				this.goHome = function(addr){
+					alert(this.name +"回到了"+addr);
+				}
+			}
+			
+			//与java中一样 通过new关键字
+			//创建一个Student对象
+			//声明的类型都是使用var
+			var stu = new Student();
+			stu.goHome("郑州");
+			
+			function Hero(name, skill, type){
+				this.name = name;
+				this.skill = skill;
+				this.type = type;
+				
+				this.useSkill = function(){
+					alert(this.name+"使用了"+this.skill);
+				}
+				
+				this.showInfo = function(){
+					alert("姓名:"+this.name +"__技能:"+this.skill+"__类型:"+this.type);
+				}
+			}
+			var yase = new Hero("亚瑟","神龙摆尾","tank");
+			
+		</script>
+	</head>
+	<body>
+		<button onclick="yase.useSkill()">使用技能</button>
+		<button onclick="yase.showInfo()">获取信息</button>
+	</body>
+</html>

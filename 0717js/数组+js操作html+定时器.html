@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>数组和js操作html 定时器</title>
+		<script type="text/javascript">
+			//定义数组的两种方式
+			var attr = ["张三"];
+			var attr1 = new Array();
+			//attr[0] = "张三";
+			attr[1] = "李四";
+			attr[2] = "王五";
+			attr[3] = "赵六";
+			//push函数 会将内容添加到数组末尾
+			//有几个参数 就会添加几个值
+			attr.push("周七", "庄八");
+			attr.unshift("我会添加到哪里呢");
+			//遍历数组
+			var result = "";
+			attr.forEach(function(e) {
+				result = result + e + "---";
+			});
+			//alert(result);
+			//getElementById getElementByTagName 
+			//document是DOM(文档对象模型)中 由html文档抽象出来的一个对象
+			//BOM(浏览器对象模型)中有一个window对象 也就是浏览器窗口抽象出来的对象
+			//DOM中还有location navigator histiry比较重要
+			//对象是事物/实体的抽象
+			//js加载比body先 所以找不到btn
+			//			var btn = document.getElementById("btn");
+			//			btn.innerHTML = "隐藏";
+			//当整个文档加载完毕后 会执行这个函数 加载函数的js语句
+			window.onload = function() {
+				var btn = document.getElementById("btn");
+				btn.innerHTML = "隐藏";
+				var img = document.getElementById("img");
+				img.onmousemove = function() {
+					this.src = "./img/cutecat.jpg";
+				};
+				img.onmouseout = function() {
+					this.src = "./img/cat.jpg";
+				};
+			};
+			//onmouseover onmouseout 鼠标滑进/出
+			
+			//定时器
+			//可用循环来做某些事 fn是一个函数 也就是循环要做的事 
+			//time是多少毫秒执行一次 该函数有返回值 返回值 就是这个定时器的名字
+			//可以根据名字停止该定时器
+			var r = 0;
+
+			function count() {
+				console.log(++r);
+			}
+			//var timerId = setInterval(count, 2000);
+			var timeId = setTimeout(count, 5000);
+		</script>
+	</head>
+
+	<body>
+		<button id="btn">显示</button>
+		<img id="img" src="img/cat.jpg" />
+		
+		<button>停止</button>
+		
+		<script type="text/javascript">
+			var btn = document.getElementsByTagName("button")[1];
+			btn.onclick = function() {
+				clearInterval(timerId);
+			}
+		</script>
+		
+	</body>
+
+</html>

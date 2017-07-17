@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>演示history</title>
+		<script type="text/javascript">
+			//history是历史管理器的抽象 但是我们不能通过history获得历史记录地址
+			//我们可以使用history前进后退
+			
+			//后退一页
+			//history.back(-1);
+			
+			//前进一页
+			//在历史记录中 在当前页之前存在记录
+			//则可以使用forward函数 前进
+			//history.forward(1);
+		</script>
+	</head>
+	<body>
+		<button onclick="history.back(-1)">后退</button>
+		<button onclick="history.forward(1)">前进</button>
+		
+		<a href="http://www.baidu.com">去百度</a>
+	</body>
+</html>

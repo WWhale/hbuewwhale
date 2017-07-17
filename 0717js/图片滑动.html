@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>图片滑动</title>
+		<script type="text/javascript">
+			var r = 0;
+			var photo = ["img/cat.jpg", "img/eye.JPG", "img/cute.JPG", "img/em.JPG"];
+			function cp(){
+				var img = document.getElementById("img");
+				img.src = photo[r%4];
+				r ++;
+			}
+			var timer = setInterval(cp, 3000);
+		</script>
+	</head>
+	<body>
+		<div>
+			<img id ="img" src ="img/cat.jpg" width="600" height="480"/>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>相册小练习</title>
+	</head>
+	<script type="text/javascript">
+		function over(num){
+			var img = document.getElementById("img");
+			var sp = document.getElementById("sp");
+			var photo = ["img/cat.jpg", "img/eye.JPG", "img/cute.JPG", "img/em.JPG"];
+			var t = ["cat","eye","cute","em"];
+			img.src = photo[num];
+			sp.innerHTML = t[num];
+			
+		}
+		function out(){
+			var img = document.getElementById("img");
+			var sp = document.getElementById("sp");
+			img.src="img/cutecat.jpg";
+			sp.innerHTML="no";
+		}
+	</script>
+	<body>
+		<img src="img/cat.jpg" width="200" height="140px" onmouseover="over(0)" onmouseout="out()">
+		<img src="img/eye.JPG" width="200" height="140px" onmouseover="over(1)" onmouseout="out()">
+		<img src="img/cute.JPG" width="200" height="140px" onmouseover="over(2)" onmouseout="out()">
+		<img src="img/em.JPG" width="200" height="140px" onmouseover="over(3)" onmouseout="out()">
+		<img id="img" width="800" height="580px" src="img/cutecat.jpg">
+		<div>
+			<span id="sp">no</span>
+		</div>
+	</body>
+</html>

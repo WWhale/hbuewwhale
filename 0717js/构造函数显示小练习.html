@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>注册</title>
+		<script type="text/javascript">
+			function Student(name, age, gender){
+				this.name = name;
+				this.age = age;
+				this.gender = gender;	
+				
+				this.getName = function(){
+					return this.name;	
+				};
+				this.getAge = function(){
+					return this.age;	
+				};
+				this.getGender = function(){
+					return this.gender;	
+				};
+			}
+			var stu = new Object();
+			
+			function setStudent(){
+				var name = document.getElementById("name").value;
+				var age = document.getElementById("age").value;
+				var gender = document.getElementById("gender").value;
+				stu = new Student(name, age, gender);
+				alert(stu.getName()+stu.getAge()+stu.getGender());
+				showStudent();
+			}
+			
+			function showStudent(){
+				document.getElementById("div").style.backgroundColor = "lightblue";
+				document.getElementById("btn").style.backgroundColor = "lightblue";
+				var s1 = document.getElementById("s1");
+				s1.innerHTML = stu.getName();
+				var s2 = document.getElementById("s2");
+				s2.innerHTML = stu.getAge();
+				var s3 = document.getElementById("s3");
+				s3.innerHTML = stu.getGender();
+			}
+			
+			function doHomework(){
+				alert(stu.getName()+"已经开始做作业了");
+			}
+		</script>
+	</head>
+	<body>
+		<label>姓名：</label>
+		<input type="text" id="name"/>
+		<br />
+		<label>年龄：</label>
+		<input type="text" id="age"/>
+		<br />
+		<label>性别：</label>
+		<input type="text" id="gender"/>
+		<button id = "btn" onclick="setStudent()">注册</button>
+		
+		<div id = "div">
+			注册的姓名为：<span id="s1"></span><br />
+			注册的年龄为：<span id="s2"></span><br />
+			注册的性别为：<span id="s3"></span><br />
+		</div>
+		<button onclick="doHomework()">做作业</button>
+	</body>
+</html>

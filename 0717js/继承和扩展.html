@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>继承和扩展</title>
+		<script type="text/javascript">
+			function People(){
+				this.p = "people";
+			}
+			
+			function Man(){
+				this.m = "man";
+			}
+			
+			function Woman(){
+				this.w = "woman";
+			}
+			
+			var man1 = new Man();
+			//表示Man继承了People
+			Man.prototype = new People();
+			var man2 = new Man();
+		</script>
+	</head>
+	<body>
+		<button onclick="alert(man1.p)">man1的属性</button>
+		<button onclick="alert(man2.p) ">man2的属性</button>
+	</body>
+</html>
