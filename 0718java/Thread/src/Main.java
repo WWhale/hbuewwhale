@@ -5,6 +5,8 @@ import my.MyRunnable;
 import my.MyThread;
 import org.junit.internal.runners.statements.RunAfters;
 import syn.SynDemo;
+import wait.DeadLock;
+import wait.WaitDemo;
 
 import javax.xml.crypto.Data;
 
@@ -19,7 +21,75 @@ public class Main {
         //showCreateThread();
         //showLife();
         //showDateException();
+        //showSync();
+        //showSync();
+        //showDifference();
+        //showDeadLock();
+    }
 
+    private static void showDeadLock() {
+        //死锁是什么 一个人去面试 面试后 面试官给他打电话 我们觉得你各方面都很符合要求
+        //你给我解释一下什么是死锁吧 解释完了我就给你发offer 这个人回答了一句你给我发Offer我就给你解释死锁
+        //当一个锁对象被线程A持有 线程A在运行过程中 又需要另一个锁对象B
+        //而锁对象B被线程B持有 线程B在运行过程中 又需要锁对象A
+        //这时候 两个线程都在等待对方释放锁资源
+        //这个状态就是死锁
+
+        DeadLock deadLock = new DeadLock();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                deadLock.p1();
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                deadLock.p2();
+            }
+        }).start();
+    }
+
+    private static void showDifference() {
+        WaitDemo waitDemo  = new WaitDemo();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                waitDemo.showSleep();
+            }
+        }).start();
+
+        try {
+            //写这个代码 是为了保证上面的定义的线程 先执行
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                waitDemo.showWait();
+            }
+        }).start();
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                waitDemo.showNotify();
+            }
+        }).start();
+    }
+
+    private static void showSync() {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -30,7 +100,7 @@ public class Main {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                SynDemo.add();
+                SynDemo.del();
             }
         }).start();
 
