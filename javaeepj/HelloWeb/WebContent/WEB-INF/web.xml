@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>HelloWeb</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+  	<servlet-name>helloServlet</servlet-name>
+  	<servlet-class>com.hbue.servlet.HelloServlet</servlet-class>
+  	<!-- 初始化参数 -->
+  	<init-param>
+  		<param-name>username</param-name>
+  		<param-value>迪丽热巴</param-value>
+  	</init-param>
+  	<!-- 配置servlet 初始化时机 参数 负整数 0 正整数 -->
+  	<!-- 负数时 调用servlet时 初始化 -->
+  	<!-- 0和正整数 tomcat加载时 初始化 -->
+  	<load-on-startup>-1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>helloServlet</servlet-name>
+  	<url-pattern>/helloServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+</web-app>
