@@ -6,9 +6,11 @@ import java.util.Enumeration;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class HelloServlet
@@ -48,6 +50,10 @@ public class HelloServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		//设置编码
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+				
 //		ADao dao = new ADao();
 //		//从数据库中拿出所需要的数据
 //		List<A> a = dao.getAll();
@@ -58,14 +64,31 @@ public class HelloServlet extends HttpServlet {
 //		//请求的重定向 得到当前路径+XXX
 //		response.sendRedirect(request.getContextPath()+"/XXX");
 		
+		
+		String parameter = request.getParameter("name");
+		System.out.println(parameter);
+		//讲参数放入请求域
+		request.setAttribute("",parameter);
+		
+		//获取请求方式
+		String method = request.getMethod();
+		System.out.println(method);
+		
+		//获取cookie和session
+		Cookie[] cookies = request.getCookies();
+		HttpSession session = request.getSession();
+		
+		//获取查询的字符串
+		String queryStr = request.getQueryString();
+		
+		//uri:/Servelt-01/hello
+		String uri = request.getRequestURI();
+
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		doGet(request, response);
 	}
 

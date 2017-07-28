@@ -28,5 +28,15 @@
   	<url-pattern>/helloServlet</url-pattern>
   </servlet-mapping>
   
+  <!-- 配置错误页面 -->
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/404page.html</location>
+  </error-page>
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/500page.html</location>
+  </error-page>
+  
   
 </web-app>
