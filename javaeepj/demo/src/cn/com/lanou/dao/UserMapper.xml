@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.lanou.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.lanou.domain.User" >
+    <id column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="userPassword" property="userpassword" jdbcType="VARCHAR" />
+    <result column="userNickname" property="usernickname" jdbcType="VARCHAR" />
+    <result column="userRealname" property="userrealname" jdbcType="VARCHAR" />
+    <result column="userAge" property="userage" jdbcType="INTEGER" />
+    <result column="userSex" property="usersex" jdbcType="VARCHAR" />
+    <result column="userAddress" property="useraddress" jdbcType="VARCHAR" />
+    <result column="userPhone" property="userphone" jdbcType="VARCHAR" />
+    <result column="userMail" property="usermail" jdbcType="VARCHAR" />
+    <result column="userQQ" property="userqq" jdbcType="VARCHAR" />
+    <result column="regTime" property="regtime" jdbcType="TIMESTAMP" />
+    <result column="lastLogintime" property="lastlogintime" jdbcType="TIMESTAMP" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="bankName" property="bankname" jdbcType="VARCHAR" />
+    <result column="branchBank" property="branchbank" jdbcType="VARCHAR" />
+    <result column="subbranchBank" property="subbranchbank" jdbcType="VARCHAR" />
+    <result column="openBankName" property="openbankname" jdbcType="VARCHAR" />
+    <result column="bankAccountName" property="bankaccountname" jdbcType="VARCHAR" />
+    <result column="bankAccount" property="bankaccount" jdbcType="VARCHAR" />
+    <result column="accountType" property="accounttype" jdbcType="VARCHAR" />
+    <result column="pay" property="pay" jdbcType="VARCHAR" />
+    <result column="mark" property="mark" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="parentNumber" property="parentnumber" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    userId, userName, userPassword, userNickname, userRealname, userAge, userSex, userAddress, 
+    userPhone, userMail, userQQ, regTime, lastLogintime, level, province, city, bankName, 
+    branchBank, subbranchBank, openBankName, bankAccountName, bankAccount, accountType, 
+    pay, mark, status, parentNumber
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.com.lanou.domain.UserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where userId = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where userId = #{userid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.com.lanou.domain.UserExample" >
+    delete from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.com.lanou.domain.User" >
+    insert into user (userId, userName, userPassword, 
+      userNickname, userRealname, userAge, 
+      userSex, userAddress, userPhone, 
+      userMail, userQQ, regTime, 
+      lastLogintime, level, province, 
+      city, bankName, branchBank, 
+      subbranchBank, openBankName, bankAccountName, 
+      bankAccount, accountType, pay, 
+      mark, status, parentNumber
+      )
+    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{userpassword,jdbcType=VARCHAR}, 
+      #{usernickname,jdbcType=VARCHAR}, #{userrealname,jdbcType=VARCHAR}, #{userage,jdbcType=INTEGER}, 
+      #{usersex,jdbcType=VARCHAR}, #{useraddress,jdbcType=VARCHAR}, #{userphone,jdbcType=VARCHAR}, 
+      #{usermail,jdbcType=VARCHAR}, #{userqq,jdbcType=VARCHAR}, #{regtime,jdbcType=TIMESTAMP}, 
+      #{lastlogintime,jdbcType=TIMESTAMP}, #{level,jdbcType=INTEGER}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{bankname,jdbcType=VARCHAR}, #{branchbank,jdbcType=VARCHAR}, 
+      #{subbranchbank,jdbcType=VARCHAR}, #{openbankname,jdbcType=VARCHAR}, #{bankaccountname,jdbcType=VARCHAR}, 
+      #{bankaccount,jdbcType=VARCHAR}, #{accounttype,jdbcType=VARCHAR}, #{pay,jdbcType=VARCHAR}, 
+      #{mark,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{parentnumber,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.lanou.domain.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="username != null" >
+        userName,
+      </if>
+      <if test="userpassword != null" >
+        userPassword,
+      </if>
+      <if test="usernickname != null" >
+        userNickname,
+      </if>
+      <if test="userrealname != null" >
+        userRealname,
+      </if>
+      <if test="userage != null" >
+        userAge,
+      </if>
+      <if test="usersex != null" >
+        userSex,
+      </if>
+      <if test="useraddress != null" >
+        userAddress,
+      </if>
+      <if test="userphone != null" >
+        userPhone,
+      </if>
+      <if test="usermail != null" >
+        userMail,
+      </if>
+      <if test="userqq != null" >
+        userQQ,
+      </if>
+      <if test="regtime != null" >
+        regTime,
+      </if>
+      <if test="lastlogintime != null" >
+        lastLogintime,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="bankname != null" >
+        bankName,
+      </if>
+      <if test="branchbank != null" >
+        branchBank,
+      </if>
+      <if test="subbranchbank != null" >
+        subbranchBank,
+      </if>
+      <if test="openbankname != null" >
+        openBankName,
+      </if>
+      <if test="bankaccountname != null" >
+        bankAccountName,
+      </if>
+      <if test="bankaccount != null" >
+        bankAccount,
+      </if>
+      <if test="accounttype != null" >
+        accountType,
+      </if>
+      <if test="pay != null" >
+        pay,
+      </if>
+      <if test="mark != null" >
+        mark,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="parentnumber != null" >
+        parentNumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userpassword != null" >
+        #{userpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="usernickname != null" >
+        #{usernickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userrealname != null" >
+        #{userrealname,jdbcType=VARCHAR},
+      </if>
+      <if test="userage != null" >
+        #{userage,jdbcType=INTEGER},
+      </if>
+      <if test="usersex != null" >
+        #{usersex,jdbcType=VARCHAR},
+      </if>
+      <if test="useraddress != null" >
+        #{useraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userphone != null" >
+        #{userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="usermail != null" >
+        #{usermail,jdbcType=VARCHAR},
+      </if>
+      <if test="userqq != null" >
+        #{userqq,jdbcType=VARCHAR},
+      </if>
+      <if test="regtime != null" >
+        #{regtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastlogintime != null" >
+        #{lastlogintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="bankname != null" >
+        #{bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="branchbank != null" >
+        #{branchbank,jdbcType=VARCHAR},
+      </if>
+      <if test="subbranchbank != null" >
+        #{subbranchbank,jdbcType=VARCHAR},
+      </if>
+      <if test="openbankname != null" >
+        #{openbankname,jdbcType=VARCHAR},
+      </if>
+      <if test="bankaccountname != null" >
+        #{bankaccountname,jdbcType=VARCHAR},
+      </if>
+      <if test="bankaccount != null" >
+        #{bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="accounttype != null" >
+        #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="pay != null" >
+        #{pay,jdbcType=VARCHAR},
+      </if>
+      <if test="mark != null" >
+        #{mark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="parentnumber != null" >
+        #{parentnumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.com.lanou.domain.UserExample" resultType="java.lang.Integer" >
+    select count(*) from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update user
+    <set >
+      <if test="record.userid != null" >
+        userId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null" >
+        userName = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userpassword != null" >
+        userPassword = #{record.userpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usernickname != null" >
+        userNickname = #{record.usernickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userrealname != null" >
+        userRealname = #{record.userrealname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userage != null" >
+        userAge = #{record.userage,jdbcType=INTEGER},
+      </if>
+      <if test="record.usersex != null" >
+        userSex = #{record.usersex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useraddress != null" >
+        userAddress = #{record.useraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userphone != null" >
+        userPhone = #{record.userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usermail != null" >
+        userMail = #{record.usermail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userqq != null" >
+        userQQ = #{record.userqq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regtime != null" >
+        regTime = #{record.regtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastlogintime != null" >
+        lastLogintime = #{record.lastlogintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.level != null" >
+        level = #{record.level,jdbcType=INTEGER},
+      </if>
+      <if test="record.province != null" >
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankname != null" >
+        bankName = #{record.bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.branchbank != null" >
+        branchBank = #{record.branchbank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subbranchbank != null" >
+        subbranchBank = #{record.subbranchbank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openbankname != null" >
+        openBankName = #{record.openbankname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankaccountname != null" >
+        bankAccountName = #{record.bankaccountname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankaccount != null" >
+        bankAccount = #{record.bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accounttype != null" >
+        accountType = #{record.accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pay != null" >
+        pay = #{record.pay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mark != null" >
+        mark = #{record.mark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentnumber != null" >
+        parentNumber = #{record.parentnumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update user
+    set userId = #{record.userid,jdbcType=INTEGER},
+      userName = #{record.username,jdbcType=VARCHAR},
+      userPassword = #{record.userpassword,jdbcType=VARCHAR},
+      userNickname = #{record.usernickname,jdbcType=VARCHAR},
+      userRealname = #{record.userrealname,jdbcType=VARCHAR},
+      userAge = #{record.userage,jdbcType=INTEGER},
+      userSex = #{record.usersex,jdbcType=VARCHAR},
+      userAddress = #{record.useraddress,jdbcType=VARCHAR},
+      userPhone = #{record.userphone,jdbcType=VARCHAR},
+      userMail = #{record.usermail,jdbcType=VARCHAR},
+      userQQ = #{record.userqq,jdbcType=VARCHAR},
+      regTime = #{record.regtime,jdbcType=TIMESTAMP},
+      lastLogintime = #{record.lastlogintime,jdbcType=TIMESTAMP},
+      level = #{record.level,jdbcType=INTEGER},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      bankName = #{record.bankname,jdbcType=VARCHAR},
+      branchBank = #{record.branchbank,jdbcType=VARCHAR},
+      subbranchBank = #{record.subbranchbank,jdbcType=VARCHAR},
+      openBankName = #{record.openbankname,jdbcType=VARCHAR},
+      bankAccountName = #{record.bankaccountname,jdbcType=VARCHAR},
+      bankAccount = #{record.bankaccount,jdbcType=VARCHAR},
+      accountType = #{record.accounttype,jdbcType=VARCHAR},
+      pay = #{record.pay,jdbcType=VARCHAR},
+      mark = #{record.mark,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      parentNumber = #{record.parentnumber,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.lanou.domain.User" >
+    update user
+    <set >
+      <if test="username != null" >
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userpassword != null" >
+        userPassword = #{userpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="usernickname != null" >
+        userNickname = #{usernickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userrealname != null" >
+        userRealname = #{userrealname,jdbcType=VARCHAR},
+      </if>
+      <if test="userage != null" >
+        userAge = #{userage,jdbcType=INTEGER},
+      </if>
+      <if test="usersex != null" >
+        userSex = #{usersex,jdbcType=VARCHAR},
+      </if>
+      <if test="useraddress != null" >
+        userAddress = #{useraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userphone != null" >
+        userPhone = #{userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="usermail != null" >
+        userMail = #{usermail,jdbcType=VARCHAR},
+      </if>
+      <if test="userqq != null" >
+        userQQ = #{userqq,jdbcType=VARCHAR},
+      </if>
+      <if test="regtime != null" >
+        regTime = #{regtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastlogintime != null" >
+        lastLogintime = #{lastlogintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="bankname != null" >
+        bankName = #{bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="branchbank != null" >
+        branchBank = #{branchbank,jdbcType=VARCHAR},
+      </if>
+      <if test="subbranchbank != null" >
+        subbranchBank = #{subbranchbank,jdbcType=VARCHAR},
+      </if>
+      <if test="openbankname != null" >
+        openBankName = #{openbankname,jdbcType=VARCHAR},
+      </if>
+      <if test="bankaccountname != null" >
+        bankAccountName = #{bankaccountname,jdbcType=VARCHAR},
+      </if>
+      <if test="bankaccount != null" >
+        bankAccount = #{bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="accounttype != null" >
+        accountType = #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="pay != null" >
+        pay = #{pay,jdbcType=VARCHAR},
+      </if>
+      <if test="mark != null" >
+        mark = #{mark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="parentnumber != null" >
+        parentNumber = #{parentnumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.lanou.domain.User" >
+    update user
+    set userName = #{username,jdbcType=VARCHAR},
+      userPassword = #{userpassword,jdbcType=VARCHAR},
+      userNickname = #{usernickname,jdbcType=VARCHAR},
+      userRealname = #{userrealname,jdbcType=VARCHAR},
+      userAge = #{userage,jdbcType=INTEGER},
+      userSex = #{usersex,jdbcType=VARCHAR},
+      userAddress = #{useraddress,jdbcType=VARCHAR},
+      userPhone = #{userphone,jdbcType=VARCHAR},
+      userMail = #{usermail,jdbcType=VARCHAR},
+      userQQ = #{userqq,jdbcType=VARCHAR},
+      regTime = #{regtime,jdbcType=TIMESTAMP},
+      lastLogintime = #{lastlogintime,jdbcType=TIMESTAMP},
+      level = #{level,jdbcType=INTEGER},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      bankName = #{bankname,jdbcType=VARCHAR},
+      branchBank = #{branchbank,jdbcType=VARCHAR},
+      subbranchBank = #{subbranchbank,jdbcType=VARCHAR},
+      openBankName = #{openbankname,jdbcType=VARCHAR},
+      bankAccountName = #{bankaccountname,jdbcType=VARCHAR},
+      bankAccount = #{bankaccount,jdbcType=VARCHAR},
+      accountType = #{accounttype,jdbcType=VARCHAR},
+      pay = #{pay,jdbcType=VARCHAR},
+      mark = #{mark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      parentNumber = #{parentnumber,jdbcType=VARCHAR}
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getUsersPages" resultType="map" parameterType="map">
+  	SELECT u.*,r.name from user u
+	LEFT JOIN user_role ur 
+	on u.userId = ur.user_id
+	LEFT JOIN role r 
+	on ur.role_id = r.id 
+	LIMIT #{pageNow,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+  
+  </select>
+  
+  <select id="getUsersPagesCount" resultType="long">
+  	SELECT count(userId) from user
+  </select>
+</mapper>

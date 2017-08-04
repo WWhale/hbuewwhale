@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.lanou.dao.ServerinfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.lanou.domain.Serverinfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cpuUsage" property="cpuusage" jdbcType="VARCHAR" />
+    <result column="setCpuUsage" property="setcpuusage" jdbcType="VARCHAR" />
+    <result column="jvmUsage" property="jvmusage" jdbcType="VARCHAR" />
+    <result column="setJvmUsage" property="setjvmusage" jdbcType="VARCHAR" />
+    <result column="ramUsage" property="ramusage" jdbcType="VARCHAR" />
+    <result column="setRamUsage" property="setramusage" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="operTime" property="opertime" jdbcType="TIMESTAMP" />
+    <result column="mark" property="mark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, cpuUsage, setCpuUsage, jvmUsage, setJvmUsage, ramUsage, setRamUsage, email, operTime, 
+    mark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.com.lanou.domain.ServerinfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from serverinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from serverinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from serverinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.com.lanou.domain.ServerinfoExample" >
+    delete from serverinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.com.lanou.domain.Serverinfo" >
+    insert into serverinfo (id, cpuUsage, setCpuUsage, 
+      jvmUsage, setJvmUsage, ramUsage, 
+      setRamUsage, email, operTime, 
+      mark)
+    values (#{id,jdbcType=INTEGER}, #{cpuusage,jdbcType=VARCHAR}, #{setcpuusage,jdbcType=VARCHAR}, 
+      #{jvmusage,jdbcType=VARCHAR}, #{setjvmusage,jdbcType=VARCHAR}, #{ramusage,jdbcType=VARCHAR}, 
+      #{setramusage,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{opertime,jdbcType=TIMESTAMP}, 
+      #{mark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.lanou.domain.Serverinfo" >
+    insert into serverinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cpuusage != null" >
+        cpuUsage,
+      </if>
+      <if test="setcpuusage != null" >
+        setCpuUsage,
+      </if>
+      <if test="jvmusage != null" >
+        jvmUsage,
+      </if>
+      <if test="setjvmusage != null" >
+        setJvmUsage,
+      </if>
+      <if test="ramusage != null" >
+        ramUsage,
+      </if>
+      <if test="setramusage != null" >
+        setRamUsage,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="opertime != null" >
+        operTime,
+      </if>
+      <if test="mark != null" >
+        mark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cpuusage != null" >
+        #{cpuusage,jdbcType=VARCHAR},
+      </if>
+      <if test="setcpuusage != null" >
+        #{setcpuusage,jdbcType=VARCHAR},
+      </if>
+      <if test="jvmusage != null" >
+        #{jvmusage,jdbcType=VARCHAR},
+      </if>
+      <if test="setjvmusage != null" >
+        #{setjvmusage,jdbcType=VARCHAR},
+      </if>
+      <if test="ramusage != null" >
+        #{ramusage,jdbcType=VARCHAR},
+      </if>
+      <if test="setramusage != null" >
+        #{setramusage,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="opertime != null" >
+        #{opertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mark != null" >
+        #{mark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.com.lanou.domain.ServerinfoExample" resultType="java.lang.Integer" >
+    select count(*) from serverinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update serverinfo
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.cpuusage != null" >
+        cpuUsage = #{record.cpuusage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.setcpuusage != null" >
+        setCpuUsage = #{record.setcpuusage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jvmusage != null" >
+        jvmUsage = #{record.jvmusage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.setjvmusage != null" >
+        setJvmUsage = #{record.setjvmusage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ramusage != null" >
+        ramUsage = #{record.ramusage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.setramusage != null" >
+        setRamUsage = #{record.setramusage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opertime != null" >
+        operTime = #{record.opertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mark != null" >
+        mark = #{record.mark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update serverinfo
+    set id = #{record.id,jdbcType=INTEGER},
+      cpuUsage = #{record.cpuusage,jdbcType=VARCHAR},
+      setCpuUsage = #{record.setcpuusage,jdbcType=VARCHAR},
+      jvmUsage = #{record.jvmusage,jdbcType=VARCHAR},
+      setJvmUsage = #{record.setjvmusage,jdbcType=VARCHAR},
+      ramUsage = #{record.ramusage,jdbcType=VARCHAR},
+      setRamUsage = #{record.setramusage,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      operTime = #{record.opertime,jdbcType=TIMESTAMP},
+      mark = #{record.mark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.lanou.domain.Serverinfo" >
+    update serverinfo
+    <set >
+      <if test="cpuusage != null" >
+        cpuUsage = #{cpuusage,jdbcType=VARCHAR},
+      </if>
+      <if test="setcpuusage != null" >
+        setCpuUsage = #{setcpuusage,jdbcType=VARCHAR},
+      </if>
+      <if test="jvmusage != null" >
+        jvmUsage = #{jvmusage,jdbcType=VARCHAR},
+      </if>
+      <if test="setjvmusage != null" >
+        setJvmUsage = #{setjvmusage,jdbcType=VARCHAR},
+      </if>
+      <if test="ramusage != null" >
+        ramUsage = #{ramusage,jdbcType=VARCHAR},
+      </if>
+      <if test="setramusage != null" >
+        setRamUsage = #{setramusage,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="opertime != null" >
+        operTime = #{opertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mark != null" >
+        mark = #{mark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.lanou.domain.Serverinfo" >
+    update serverinfo
+    set cpuUsage = #{cpuusage,jdbcType=VARCHAR},
+      setCpuUsage = #{setcpuusage,jdbcType=VARCHAR},
+      jvmUsage = #{jvmusage,jdbcType=VARCHAR},
+      setJvmUsage = #{setjvmusage,jdbcType=VARCHAR},
+      ramUsage = #{ramusage,jdbcType=VARCHAR},
+      setRamUsage = #{setramusage,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      operTime = #{opertime,jdbcType=TIMESTAMP},
+      mark = #{mark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

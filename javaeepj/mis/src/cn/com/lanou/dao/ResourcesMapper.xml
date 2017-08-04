@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.lanou.dao.ResourcesMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.lanou.domain.Resources" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="parentId" property="parentid" jdbcType="INTEGER" />
+    <result column="resKey" property="reskey" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="resUrl" property="resurl" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="getResourcesByUserName" resultMap="BaseResultMap" parameterType="String">
+  	SELECT r.* FROM resources r 
+	LEFT JOIN resources_role rr 
+	ON r.id = rr.resc_id 
+	LEFT JOIN role ro 
+	ON rr.role_id = ro.id 
+	LEFT JOIN user_role ur 
+	ON ro.id = ur.role_id 
+	LEFT JOIN user u 
+	ON ur.user_id = u.userId
+	WHERE u.userName = #{username,jdbcType=VARCHAR}
+  </select>
+</mapper>

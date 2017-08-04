@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.lanou.dao.UserloginlistMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.lanou.domain.Userloginlist" >
+    <id column="loginId" property="loginid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="loginTime" property="logintime" jdbcType="TIMESTAMP" />
+    <result column="loginIP" property="loginip" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insertUserloginlist" parameterType="cn.com.lanou.domain.Userloginlist">
+  	INSERT INTO userloginlist (
+	userId,loginIP
+	) VALUES (
+	#{userid,jdbcType=INTEGER},#{loginip,jdbcType=VARCHAR}
+	) 
+  </insert>
+</mapper>

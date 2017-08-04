@@ -1,0 +1,79 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd ">
+		
+	<context:component-scan base-package="cn.com.mymis.dao"/>
+	<context:component-scan base-package="cn.com.mymis.service"/>
+	<!-- 第一步：配置数据源 -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="jdbcUrl" value="${jdbc.url}"></property>
+		<property name="driverClass" value="${jdbc.driver}"></property>
+		<property name="user" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+
+	</bean>
+
+	<!-- 第二步：创建sqlSessionFactory。生产sqlSession -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:sqlMapConfig.xml"></property>
+	</bean>
+	<!-- 配置mybatis接口代理开发
+		* 接口类名和映射文件必须同名
+		*　接口类和映射文件必须在同一个目录　下
+		* 映射文件namespace名字必须是接口的全类路径名
+		*　接口的方法名必须和映射Statement的ｉｄ一致
+	 -->
+	 <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	 <property name="basePackage" value="cn.com.mymis.dao"></property>
+	 <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	 </bean>
+	
+
+	<!-- 第三步：事务 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- 配置通知 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="is*" read-only="true" propagation="SUPPORTS" />
+			<tx:method name="get*" read-only="true" propagation="SUPPORTS" />
+			<tx:method name="list*" read-only="true" propagation="SUPPORTS" />
+			<tx:method name="query*" read-only="true" propagation="SUPPORTS" />
+			<tx:method name="load*" read-only="true" propagation="SUPPORTS" />
+			<tx:method name="add*" read-only="false" propagation="REQUIRED" />
+			<tx:method name="delete*" read-only="false" propagation="REQUIRED" />
+			<tx:method name="save*" read-only="false" propagation="REQUIRED" />
+			<tx:method name="update*" read-only="false" propagation="REQUIRED" />
+			   
+			<tx:method name="*" propagation="REQUIRED" read-only="false" />	
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- 配置拦截service -->
+	<aop:config>
+		<!-- 
+			第一个*代表所有的返回类型，
+			第二个*代表service包下所有的类，
+			第三个*代表所有的方法，
+			括号里面的..代码所有的参数 
+		-->
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(* cn.com.mymis.service.*.*(..))"/>
+	</aop:config>
+	
+	
+</beans>

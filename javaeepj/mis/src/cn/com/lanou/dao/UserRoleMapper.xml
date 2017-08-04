@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.lanou.dao.UserRoleMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.lanou.domain.UserRoleKey" >
+    <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <id column="role_id" property="roleId" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="addUserRoleKey" parameterType="cn.com.lanou.domain.UserRoleKey">
+  	INSERT INTO user_role
+  	 (user_id,role_id)
+  	 VALUES
+  	 (#{userId,jdbcType=BIGINT},#{roleId,jdbcType=BIGINT})
+  </insert>
+  
+  <delete id="deleteUserRoleKey" parameterType="cn.com.lanou.domain.UserRoleKey">
+  	DELETE FROM user_role 
+  	<where>
+  		<if test="userId != null and userId != ''">
+  		user_id = #{userId,jdbcType=BIGINT}
+	  	</if>
+	  	<if test="roleId != null and roleId != ''">
+	  		role_id = #{roleId,jdbcType=BIGINT}
+	  	</if>
+  	</where>
+  </delete>
+  
+  <delete id="deleteAllByUserId" parameterType="int">
+  	DELETE FROM user_role WHERE user_id in 
+  	<foreach item="userids" collection="array" open="(" separator="," close=")">
+        #{userids}
+    </foreach>
+  </delete>
+</mapper>
